@@ -22,4 +22,20 @@ class PotonganGaji extends Server {
             $this->response(array("potongan_gaji" => $this->model->get_data($this->input->get('id'))),200);
         }
     }
+
+    function service_post()
+    {
+        $data = array(
+            'potongan' => $this->input->post('jenis_potongan'),
+            'jml_potongan' => $this->input->post('jumlah_potongan')
+        );
+
+        $hasil = $this->model->save_data($data);
+        
+        if($hasil == 0) {
+            $this->response(array("pesan" => "true"),200);
+        } else {
+            $this->response(array("pesan" => "false"),200);
+        }
+    }
 }
