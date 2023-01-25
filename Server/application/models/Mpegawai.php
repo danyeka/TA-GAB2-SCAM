@@ -33,5 +33,15 @@ class Mpegawai extends CI_Model {
         );
         return $this->db->update("data_pegawai", $data, $where);
     }
+
+    function delete_data($id)
+    {
+        $where = array(
+            'id_pegawai' => $id
+        );
+
+        $this->db->where($where);
+        return $this->db->delete("data_pegawai");
+    }
 }
 
