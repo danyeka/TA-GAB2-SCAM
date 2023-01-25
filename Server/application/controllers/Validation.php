@@ -12,4 +12,9 @@ class Validation extends Server {
         $this->load->model("Mpegawai","model",TRUE);
         $this->load->model("Mgaji","gaji",TRUE);
     }
+
+    function service_get()
+    {
+        $this->response(array('gaji' => $this->gaji->get_data_pegawai($this->get("nik"))) ,200);
+    }
 }
