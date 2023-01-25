@@ -11,5 +11,10 @@ class Mpotongan_gaji extends CI_Model {
         else $this->db->where("id = '$id'");
         return $this->db->get()->result();
     }
+
+    function save_data($data)
+    {
+      return $this->db->insert("potongan_gaji", $data);
+    }
 }
 
