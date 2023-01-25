@@ -89,6 +89,48 @@ class DataJabatan extends CI_Controller{
         $this->load->view('admin/update_jabatan',$data);
         $this->load->view('templates_admin/footer');
     }
+
+    public function update_data_aksi()
+    {
+        $this->_rules();
+
+        if ($this->form_validation->run() == FALSE){
+            $this->index();
+        } else {
+            $id = $this->input->post('id_jabatan');
+            $nama_jabatan = $this->input->post('nama_jabatan');
+            $gaji_pokok = $this->input->post('gaji_pokok');
+            $tj_transport = $this->input->post('tj_transport');
+            $uang_makan = $this->input->post('uang_makan');
+
+            $data = array(
+                'id_jabatan' => $this->input->post('id_jabatan'),
+                'nama_jabatan' => $this->input->post('nama_jabatan'),
+                'gaji_pokok' => $this->input->post('gaji_pokok'),
+                'tj_transport' => $this->input->post('tj_transport'),
+                'uang_makan' => $this->input->post('uang_makan')
+            );
+
+            $response = json_decode($this->client->simple_post(API_DATA_JABATAN . 'Update', $data));
+            if ($response->pesan){
+                $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Data berhasil diupdate</strong> 
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>');
+            } else {
+                $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Data gagal diupdate</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>');
+            }
+
+            $this->index();
+        }
+    }
 }
 
 ?>
