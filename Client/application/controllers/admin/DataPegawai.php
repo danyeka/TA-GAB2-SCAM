@@ -104,6 +104,23 @@ class DataPegawai extends CI_Controller{
             $this->index();
         }
     }
+
+    public function update_data($id)
+    {
+        $send = array('id' => "");
+        $response = json_decode($this->client->simple_get(API_DATA_JABATAN, $send));
+        $data['jabatan'] = $response->jabatan;
+
+        $send = array('id' => $id);
+        $response = json_decode($this->client->simple_get(API_DATA_PEGAWAI, $send));
+        $data['pegawai'] = $response->pegawai;
+
+        $data['title'] = "Update Data Pegawai";
+        $this->load->view('templates_admin/header',$data);
+        $this->load->view('templates_admin/sidebar');
+        $this->load->view('admin/update_pegawai',$data);
+        $this->load->view('templates_admin/footer');
+    }
     }
 }
 
