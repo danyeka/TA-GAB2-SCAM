@@ -213,6 +213,17 @@ class DataPegawai extends CI_Controller{
 
         $this->index();
     }
+
+    public function _rules(){
+        $this->form_validation->set_rules('nik', 'NIK', 'required');
+        $this->form_validation->set_rules('nama_pegawai', 'Nama Pegawai', 'required');
+        $this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required');
+        $this->form_validation->set_rules('tanggal_masuk', 'Tanggal Masuk', 'required');
+        $this->form_validation->set_rules('jabatan', 'Jabatan', 'required');
+        $this->form_validation->set_rules('status', 'Status', 'required');
+        $this->form_validation->set_rules('hak_akses', 'Hak Akses', 'required');
+        $this->form_validation->set_rules('username', 'Username', 'required');
+        $this->form_validation->set_rules('password', 'Password', 'required');
     }
 }
 
