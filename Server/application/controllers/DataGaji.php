@@ -10,4 +10,12 @@ class DataGaji extends Server {
         parent::__construct();
         $this->load->model("Mgaji","model",TRUE);
     }
+
+    function service_get()
+    {
+        $hasil = $this->model->get_data($this->get("bulantahun"));
+        $number = sizeof($hasil);
+        $this->response(array("gaji" => $hasil, "gaji_jumlah" => $number),200);
+    }
+    
 }
