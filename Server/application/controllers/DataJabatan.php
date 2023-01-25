@@ -11,4 +11,15 @@ class DataJabatan extends Server {
         parent::__construct();
         $this->load->model("Mjabatan", "model", TRUE);
     }
+
+    function service_get()
+    {
+        if (empty($this->input->get('id'))){
+            $hasil = $this->model->get_data('');
+            $number = sizeof($this->model->get_data(''));
+            $this->response(array("jabatan" => $hasil, "jabatan_jumlah" => $number),200);
+        } else {
+            $this->response(array("jabatan" => $this->model->get_data($this->input->get('id'))),200);
+        }
+    }
 }
