@@ -24,5 +24,11 @@ class Mpotongan_gaji extends CI_Model {
       );
       return $this->db->update("potongan_gaji", $data, $where);
     }
+
+    function delete_data($id)
+    {
+      $this->db->where(array('id' => $id));
+      return $this->db->delete("potongan_gaji");
+    }
 }
 
