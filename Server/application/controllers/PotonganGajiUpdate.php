@@ -12,4 +12,12 @@ class PotonganGajiUpdate extends Server {
         $this->load->model("Mpotongan_gaji", "model", TRUE);
     }
 
+    function service_get()
+    {
+        if($this->model->delete_data($this->input->get('id')) == 0) {
+            $this->response(array("pesan" => "true", 'id' => $this->input->get('id')),200);
+        } else {
+            $this->response(array("pesan" => "false", 'id' => $this->input->get('id')),200);
+        }
+    }
 }
