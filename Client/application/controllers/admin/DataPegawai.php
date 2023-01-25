@@ -18,8 +18,16 @@ class DataPegawai extends CI_Controller{
     
     public function index()
     {
-        $data = $this->db->query("SELECT * FROM data_pegawai")->result();
-        var_dump($data);
+        $send = array('id' => "");
+        $data['title'] = "Data Pegawai";
+        $jabatan = json_decode($this->client->simple_get(API_DATA_PEGAWAI, $send));
+        $data['pegawai'] = $jabatan->pegawai;
+
+        $this->load->view('templates_admin/header',$data);
+        $this->load->view('templates_admin/sidebar');
+        $this->load->view('admin/data_pegawai',$data);
+        $this->load->view('templates_admin/footer');
+    }
     }
 }
 
