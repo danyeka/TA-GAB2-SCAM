@@ -187,6 +187,32 @@ class DataPegawai extends CI_Controller{
             $this->index();
         }
     }
+
+    public function delete_data($id)
+    {
+        $data = array(
+            'id_pegawai' => $id
+        );
+
+        $response = json_decode($this->client->simple_get(API_DATA_PEGAWAI . 'Update', $data));
+        if ($response->pesan){
+            $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Data berhasil dihapus</strong> 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>');
+        } else {
+            $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Data gagal dihapus</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>');
+        }
+
+        $this->index();
+    }
     }
 }
 
