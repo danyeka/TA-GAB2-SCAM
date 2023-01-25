@@ -30,6 +30,15 @@ class PotonganGaji extends CI_Controller{
         $this->load->view('admin/potongan_gaji',$data);
         $this->load->view('templates_admin/footer');
     }
+
+    public function tambah_data()
+    {
+        $data['title'] = "Tambah Potongan Gaji";
+        $this->load->view('templates_admin/header',$data);
+        $this->load->view('templates_admin/sidebar');
+        $this->load->view('admin/tambah_potongan_gaji',$data);
+        $this->load->view('templates_admin/footer');
+    }
 }
 
 ?>
