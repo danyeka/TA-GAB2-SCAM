@@ -12,4 +12,13 @@ class DataPegawaiUpdate extends Server {
         $this->load->model("Mpegawai","model",TRUE);
     }
 
+
+    function service_get()
+    {
+        if($this->model->delete_data($this->input->get('id_pegawai')) == 0) {
+            $this->response(array("pesan" => "true"),200);
+        } else {
+            $this->response(array("pesan" => "false"),200);
+        }
+    }
 }
