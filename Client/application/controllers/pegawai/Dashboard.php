@@ -15,6 +15,19 @@ class Dashboard extends CI_Controller{
 			redirect("/");
         }
     }
+
+    public function index()
+    {
+        $data['title'] = "Dashboard";
+        $send = array('id' => $this->session->userdata('id_pegawai'));
+        $pegawai = json_decode($this->client->simple_get(API_DATA_PEGAWAI, $send));
+        $data['pegawai'] = $pegawai->pegawai;
+
+        $this->load->view('templates_admin/header',$data);
+        $this->load->view('templates_admin/sidebar');
+        $this->load->view('pegawai/dashboard',$data);
+        $this->load->view('templates_admin/footer');
+    }
 }
 
 ?>
