@@ -17,4 +17,15 @@ class Validation extends Server {
     {
         $this->response(array('gaji' => $this->gaji->get_data_pegawai($this->get("nik"))) ,200);
     }
+
+    function service_post()
+    {
+        $data = array(
+            "username" => $this->post("username"),
+            "password" => $this->post("password"),
+       
+        );
+
+        $this->response($this->model->get_login($data) ,200);
+    }
 }
