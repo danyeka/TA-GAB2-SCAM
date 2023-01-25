@@ -75,6 +75,19 @@ class PotonganGaji extends CI_Controller{
             $this->index();
         }
     }
+
+    public function update_data($id)
+    {
+        $send = array('id' => $id);
+        $response = json_decode($this->client->simple_get(API_POTONGAN_GAJI, $send));
+        $data['potongan_gaji'] = $response->potongan_gaji;
+
+        $data['title'] = "Update Potongan Gaji";
+        $this->load->view('templates_admin/header',$data);
+        $this->load->view('templates_admin/sidebar');
+        $this->load->view('admin/update_potongan_gaji',$data);
+        $this->load->view('templates_admin/footer');
+    }
 }
 
 ?>
