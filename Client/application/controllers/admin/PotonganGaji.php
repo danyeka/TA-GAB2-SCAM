@@ -88,6 +88,41 @@ class PotonganGaji extends CI_Controller{
         $this->load->view('admin/update_potongan_gaji',$data);
         $this->load->view('templates_admin/footer');
     }
+
+    public function update_data_aksi()
+    {
+        $this->_rules();
+
+        if ($this->form_validation->run() == FALSE){
+            $this->index();
+        } else {
+            $id = $this->input->post('id');
+            $data = array(
+                'jumlah_potongan'   => $this->input->post('jumlah_potongan'),
+                'jenis_potongan'    => $this->input->post('jenis_potongan'),
+                'id'                => $this->input->post('id')
+            );
+
+            $response = json_decode($this->client->simple_post(API_POTONGAN_GAJI . 'Update', $data));
+            if ($response->pesan){
+                $this->session->set_flashdata('pesan', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Data berhasil diUpdate</strong> 
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>');
+            } else {
+                $this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Data gagal diUpdate</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>');
+            }
+
+            $this->index();
+        }
+    }
 }
 
 ?>
