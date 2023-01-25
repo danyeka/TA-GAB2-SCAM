@@ -12,4 +12,16 @@ class DataPegawai extends Server {
         $this->load->model("Mpegawai","model",TRUE);
     }
 
+
+    function service_get()
+    {
+        if (empty($this->input->get('id'))){  
+            $hasil = $this->model->get_data('');
+            $admin = sizeof($this->model->get_data_admin());
+            $number = sizeof($this->model->get_data(''));
+            $this->response(array("pegawai" =>$hasil, "pegawai_jumlah" => $number, "admin_jumlah" => $admin),200);
+        } else {
+            $this->response(array("pegawai" => $this->model->get_data($this->input->get('id'))),200);
+        }
+    }
 }
