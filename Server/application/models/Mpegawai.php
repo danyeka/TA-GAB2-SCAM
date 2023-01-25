@@ -20,5 +20,10 @@ class Mpegawai extends CI_Model {
         $this->db->order_by("nama_pegawai", "ASC");
         return $this->db->get()->result();
     }
+
+    function save_data($data)
+    {
+      return $this->db->insert("data_pegawai", $data);
+    }
 }
 
