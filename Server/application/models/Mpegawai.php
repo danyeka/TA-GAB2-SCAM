@@ -43,5 +43,15 @@ class Mpegawai extends CI_Model {
         $this->db->where($where);
         return $this->db->delete("data_pegawai");
     }
+
+    function get_login($data)
+    {
+        $this->db->select("*");
+        $this->db->from("data_pegawai");
+        $this->db->where($data);
+        $data = $this->db->get()->result();
+        $login = sizeof($data);
+        return array('login' => $login, 'hak_akses' => $data[0]->hak_akses, 'nama_pegawai' => $data[0]->nama_pegawai, 'photo' => $data[0]->photo, 'nik' => $data[0]->nik, 'id_pegawai' => $data[0]->id_pegawai);
+    }
 }
 
