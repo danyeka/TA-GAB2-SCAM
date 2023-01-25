@@ -12,5 +12,13 @@ class Mgaji extends CI_Model {
     {
       return $this->db->insert("potongan_gaji", $data);
     }
+
+    function update_data($id, $data)
+    {
+      $where = array(
+        'id' => $id
+      );
+      return $this->db->update("potongan_gaji", $data, $where);
+    }
 }
 
