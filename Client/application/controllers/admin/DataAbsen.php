@@ -106,6 +106,15 @@ class DataAbsen extends CI_Controller{
             $this->index();
         }
     }
+
+    public function _rules(){
+        $this->form_validation->set_rules('nik', 'NIK', 'required');
+        $this->form_validation->set_rules('nama_pegawai', 'Nama Pegawai', 'required');
+        $this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required');
+        $this->form_validation->set_rules('tanggal_masuk', 'Tanggal Masuk', 'required');
+        $this->form_validation->set_rules('jabatan', 'Jabatan', 'required');
+        $this->form_validation->set_rules('status', 'Status', 'required');
+    }
 }
 
 ?>
