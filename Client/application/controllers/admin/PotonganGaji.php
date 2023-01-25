@@ -149,6 +149,11 @@ class PotonganGaji extends CI_Controller{
 
         $this->index();
     }
+
+    public function _rules(){
+        $this->form_validation->set_rules('jenis_potongan', 'Jenis Potongan', 'required');
+        $this->form_validation->set_rules('jumlah_potongan', 'Jumlah Potongan', 'required');
+    }
 }
 
 ?>
