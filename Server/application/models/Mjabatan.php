@@ -24,5 +24,14 @@ class MJabatan extends CI_Model {
       );
       return $this->db->update("data_jabatan", $data, $where);
     }
+
+    function delete_data($id)
+    {
+      $where = array(
+        'id_jabatan' => $id
+      );
+    $this->db->where($where);
+      return $this->db->delete("data_jabatan");
+    }
 }
 
