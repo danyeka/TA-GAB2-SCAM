@@ -16,6 +16,18 @@ class DataJabatan extends CI_Controller{
         }
     }
     
+    public function index()
+    {
+        $send = array('id' => "");
+        $data['title'] = "Data Jabatan";
+        $jabatan = json_decode($this->client->simple_get(API_DATA_JABATAN, $send));
+        $data['jabatan'] = $jabatan->jabatan;
+
+        $this->load->view('templates_admin/header',$data);
+        $this->load->view('templates_admin/sidebar');
+        $this->load->view('admin/data_jabatan',$data);
+        $this->load->view('templates_admin/footer');
+    }
 }
 
 ?>
