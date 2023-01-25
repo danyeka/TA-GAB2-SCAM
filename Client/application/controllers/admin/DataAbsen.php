@@ -16,6 +16,26 @@ class DataAbsen extends CI_Controller{
         }
     }
     
+    public function index()
+    {
+        $bulan = date('m');
+        $tahun = date('Y');
+        $bulantaun = $bulan . $tahun;
+
+        if (empty($this->input->get('bulan'))) $send = array('bulantahun' => $bulan . $this->input->get('tahun'));
+        else if (empty($this->input->get('tahun'))) $send = array('bulantahun' => $this->input->get('bulan') . $tahun);
+        else if(!empty($this->input->get('bulan')) && !empty($this->input->get('bulan'))) $send = array('bulantahun' => $this->input->get('bulan') . $this->input->get('tahun'));
+        else $send = array('bulantahun' => $bulantaun);
+
+        $data['title'] = "Data Absen";
+        $jabatan = json_decode($this->client->simple_get(API_DATA_ABSEN, $send));
+        $data['absen'] = $jabatan->absen;
+
+        $this->load->view('templates_admin/header',$data);
+        $this->load->view('templates_admin/sidebar');
+        $this->load->view('admin/data_absen',$data);
+        $this->load->view('templates_admin/footer');
+    }
 }
 
 ?>
