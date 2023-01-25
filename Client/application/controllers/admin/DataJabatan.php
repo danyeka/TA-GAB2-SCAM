@@ -77,6 +77,18 @@ class DataJabatan extends CI_Controller{
             $this->index();
         }
     }
+
+    public function update_data($id)
+    {
+        $send = array('id' => $id);
+        $response = json_decode($this->client->simple_get(API_DATA_JABATAN, $send));
+        $data['jabatan'] = $response->jabatan;
+        $data['title'] = "Update Data Jabatan";
+        $this->load->view('templates_admin/header',$data);
+        $this->load->view('templates_admin/sidebar');
+        $this->load->view('admin/update_jabatan',$data);
+        $this->load->view('templates_admin/footer');
+    }
 }
 
 ?>
