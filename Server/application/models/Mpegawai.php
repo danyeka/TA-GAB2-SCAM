@@ -25,5 +25,13 @@ class Mpegawai extends CI_Model {
     {
       return $this->db->insert("data_pegawai", $data);
     }
+
+    function update_data($data, $id)
+    {
+        $where = array(
+            'id_pegawai' => $id
+        );
+        return $this->db->update("data_pegawai", $data, $where);
+    }
 }
 
