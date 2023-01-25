@@ -16,5 +16,13 @@ class MJabatan extends CI_Model {
     {
       return $this->db->insert("data_jabatan", $data);
     }
+
+    function update_data($id, $data)
+    {
+      $where = array(
+        'id_jabatan' => $id
+      );
+      return $this->db->update("data_jabatan", $data, $where);
+    }
 }
 
