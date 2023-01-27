@@ -33,6 +33,7 @@ class DataAbsen extends Server {
             "photo" => $this->post("photo"),
             "token" => base64_encode($this->post("token")),
         );
+    
         // panggil method "save data"
         $hasil = $this->model->save_data($data["nik"],
         $data["nama_pegawai"],$data["jenis_kelamin"],$data["jabatan"],$data["tanggal_masuk"],$data["status"],

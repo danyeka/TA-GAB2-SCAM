@@ -1,0 +1,9 @@
+Login untuk admin
+
+username : admin
+password : admin
+
+Login untuk pegawai
+
+username : alzi
+password : 123

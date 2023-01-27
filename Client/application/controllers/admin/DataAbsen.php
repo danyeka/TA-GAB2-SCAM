@@ -47,6 +47,7 @@ class DataAbsen extends CI_Controller{
         $this->load->view('admin/tambah_pegawai',$data);
         $this->load->view('templates_admin/footer');
     }
+    
 
     public function tambah_data_aksi()
     {
